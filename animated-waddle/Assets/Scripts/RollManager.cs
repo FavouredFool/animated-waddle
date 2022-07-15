@@ -43,8 +43,6 @@ public class RollManager : MonoBehaviour
 
         if (gameState == GameState.ROLLING)
         {
-            
-
             int result = _playerDice.GetResult();
             if (result > 0)
             {

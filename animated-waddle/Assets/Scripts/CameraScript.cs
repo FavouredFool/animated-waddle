@@ -10,17 +10,25 @@ public class CameraScript : MonoBehaviour
     [SerializeField]
     RollManager _rollManager;
 
+    [SerializeField, Range(0.01f, 1)]
+    float _mouseSensitivity;
+
     [SerializeField, Range(1f, 20f)]
     float _distance = 5f;
 
     [SerializeField, Range(0f, 1f)]
     float _focusCentering = 0.5f;
 
+    [SerializeField, Range(10f, 90f)]
+    float _maxEgoRotation = 45f;
+
     Transform _focus;
     Camera _regularCamera;
     Vector3 _focusPoint;
     Vector3 _previousFocusPoint;
     float _focusRadius;
+
+    Vector2 currentLook;
 
     void Start()
     {
@@ -31,7 +39,22 @@ public class CameraScript : MonoBehaviour
     {
         if (_rollManager.gameState == RollManager.GameState.EGO)
         {
-            transform.SetPositionAndRotation(_egoTransform.position, _egoTransform.rotation);
+            Vector2 playerInput;
+            playerInput.x = Input.GetAxis("Mouse X");
+            playerInput.y = Input.GetAxis("Mouse Y");
+
+            playerInput = Vector2.ClampMagnitude(playerInput, 1f);
+
+            playerInput.x *= _mouseSensitivity;
+            playerInput.y *= _mouseSensitivity;
+
+            currentLook.x = Mathf.Clamp(currentLook.x += playerInput.x, -_maxEgoRotation, _maxEgoRotation);
+            currentLook.y = Mathf.Clamp(currentLook.y += playerInput.y, -_maxEgoRotation, _maxEgoRotation);
+
+            transform.localRotation = Quaternion.AngleAxis(currentLook.y, Vector3.forward) * Quaternion.AngleAxis(currentLook.x, Vector3.up) * _egoTransform.rotation;
+
+            transform.position = _egoTransform.position;
+            //transform.SetPositionAndRotation(_egoTransform.position, _egoTransform.rotation);
         }
         else if (_rollManager.gameState == RollManager.GameState.ROLLING)
         {
