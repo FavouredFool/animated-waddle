@@ -5,7 +5,10 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     [SerializeField]
-    Transform _focus = default;
+    Transform _egoTransform;
+
+    [SerializeField]
+    RollManager _rollManager;
 
     [SerializeField, Range(1f, 20f)]
     float _distance = 5f;
@@ -13,7 +16,7 @@ public class CameraScript : MonoBehaviour
     [SerializeField, Range(0f, 1f)]
     float _focusCentering = 0.5f;
 
-
+    Transform _focus;
     Camera _regularCamera;
     Vector3 _focusPoint;
     Vector3 _previousFocusPoint;
@@ -22,26 +25,43 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         _regularCamera = GetComponent<Camera>();
-        _focusPoint = _focus.position;
     }
 
     void LateUpdate()
     {
-        UpdateFocusPoint();
+        if (_rollManager.gameState == RollManager.GameState.EGO)
+        {
+            transform.SetPositionAndRotation(_egoTransform.position, _egoTransform.rotation);
+        }
+        else if (_rollManager.gameState == RollManager.GameState.ROLLING)
+        {
+            UpdateFocusPoint();
 
-        Vector2 orbitAngles = new Vector2(45f, 45f);
-        Quaternion lookRotation = Quaternion.Euler(orbitAngles);
+            Vector2 orbitAngles = new Vector2(55f, 90f);
+            Quaternion lookRotation = Quaternion.Euler(orbitAngles);
 
-        Vector3 lookDirection = lookRotation * Vector3.forward;
-        Vector3 lookPosition = _focusPoint - lookDirection * _distance;
+            Vector3 lookDirection = lookRotation * Vector3.forward;
+            Vector3 lookPosition = _focusPoint - lookDirection * _distance;
 
+            transform.SetPositionAndRotation(lookPosition, lookRotation);
+        }
+        
+    }
 
-        transform.SetPositionAndRotation(lookPosition, lookRotation);
+    public void SetFocus(Transform focus)
+    {
+        _focus = focus;
+        _focusPoint = focus.position;
     }
 
 
     void UpdateFocusPoint()
     {
+        if (_focus == null)
+        {
+            return;
+        }
+
         _previousFocusPoint = _focusPoint;
         Vector3 targetPoint = _focus.position;
         if (_focusRadius > 0f)

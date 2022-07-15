@@ -34,6 +34,11 @@ public class PlayerDiceScript : MonoBehaviour
         _rb.isKinematic = true;
     }
 
+    public void Init(Camera camera)
+    {
+        _camera = camera;
+    }
+
     private void Update()
     {
         if (!OnGround)
@@ -132,6 +137,10 @@ public class PlayerDiceScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (_camera == null)
+        {
+            return;
+        }
         CalculateDiceRotation();
     }
 
