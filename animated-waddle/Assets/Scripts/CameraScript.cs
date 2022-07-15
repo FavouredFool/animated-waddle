@@ -20,7 +20,10 @@ public class CameraScript : MonoBehaviour
     float _focusCentering = 0.5f;
 
     [SerializeField, Range(10f, 90f)]
-    float _maxEgoRotation = 45f;
+    float _maxVerticalEgoRotation = 45f;
+
+    [SerializeField, Range(10f, 90f)]
+    float _maxHorizontalEgoRotation = 45f;
 
     Transform _focus;
     Camera _regularCamera;
@@ -48,8 +51,8 @@ public class CameraScript : MonoBehaviour
             playerInput.x *= _mouseSensitivity;
             playerInput.y *= _mouseSensitivity;
 
-            currentLook.x = Mathf.Clamp(currentLook.x += playerInput.x, -_maxEgoRotation, _maxEgoRotation);
-            currentLook.y = Mathf.Clamp(currentLook.y += playerInput.y, -_maxEgoRotation, _maxEgoRotation);
+            currentLook.x = Mathf.Clamp(currentLook.x += playerInput.x, -_maxHorizontalEgoRotation, _maxHorizontalEgoRotation);
+            currentLook.y = Mathf.Clamp(currentLook.y += playerInput.y, -_maxVerticalEgoRotation, _maxVerticalEgoRotation);
 
             transform.localRotation = Quaternion.AngleAxis(currentLook.y, Vector3.forward) * Quaternion.AngleAxis(currentLook.x, Vector3.up) * _egoTransform.rotation;
 
