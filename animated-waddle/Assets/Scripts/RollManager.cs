@@ -49,6 +49,7 @@ public class RollManager : MonoBehaviour
                 Debug.Log("result: " + result);
                 _latestResult = result;
                 gameState = GameState.EGO;
+                _canThrowFlag = true;
             }
         }
 

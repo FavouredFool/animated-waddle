@@ -58,6 +58,9 @@ public class CameraScript : MonoBehaviour
         }
         else if (_rollManager.gameState == RollManager.GameState.ROLLING)
         {
+            // reset ego
+            currentLook = new Vector2(0, 0);
+
             UpdateFocusPoint();
 
             Vector2 orbitAngles = new Vector2(55f, 90f);
