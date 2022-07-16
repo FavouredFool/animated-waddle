@@ -22,19 +22,22 @@ public class RollManager : MonoBehaviour
     public GameState gameState = GameState.EGO;
 
     // flag
-    bool _canThrowFlag = true;
+    bool _canThrowFlag;
 
     int _latestResult = -1;
 
     PlayerDiceScript _playerDice = null;
 
 
+    private void Awake()
+    {
+        _canThrowFlag = false;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            
-
             if (_canThrowFlag)
             {
                 gameState = GameState.ROLLING;
@@ -83,4 +86,26 @@ public class RollManager : MonoBehaviour
 
         _playerDice.GetRigidbody().AddExplosionForce(rollStrength, explosionPosition, 0f, rollStrength * rollHeight, ForceMode.Impulse);
     }
+
+    public bool GetCanThrowFlag()
+    {
+        return _canThrowFlag;
+    }
+
+    public void SetCanThrowFlag(bool canThrow)
+    {
+        _canThrowFlag = canThrow;
+    }
+
+    public int GetLatestResult()
+    {
+        return _latestResult;
+    }
+
+    public void ResetResult()
+    {
+        _latestResult = -1;
+    }
 }
+
+

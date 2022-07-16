@@ -10,10 +10,10 @@ public class DialogCanvasScript : MonoBehaviour
     private TMP_Text GMText;
 
     [SerializeField]
-    private Button answerOption1;
+    private Image answerOption1;
 
     [SerializeField]
-    private Button answerOption2;
+    private Image answerOption2;
 
     [SerializeField]
     private Image answerOptionImage1;
@@ -21,6 +21,24 @@ public class DialogCanvasScript : MonoBehaviour
     [SerializeField]
     private Image answerOptionImage2;
 
+    bool _canChooseOptions = true;
+
+    int _answer = -1;
+
+    private void Update()
+    {
+        if (_canChooseOptions)
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                _answer = 0;
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                _answer = 1;
+            }
+        }
+    }
 
     public void SetGMText(string text)
     {
@@ -29,6 +47,8 @@ public class DialogCanvasScript : MonoBehaviour
 
     public void SetAnswerOptions(string answerText1, string answerText2)
     {
+        _canChooseOptions = true;
+
         answerOption1.gameObject.SetActive(true);
         answerOption2.gameObject.SetActive(true);
         answerOptionImage1.gameObject.SetActive(true);
@@ -40,9 +60,21 @@ public class DialogCanvasScript : MonoBehaviour
 
     public void RemoveAnswerOptions()
     {
+        _canChooseOptions = false;
+
         answerOption1.gameObject.SetActive(false);
         answerOption2.gameObject.SetActive(false);
         answerOptionImage1.gameObject.SetActive(false);
         answerOptionImage2.gameObject.SetActive(false);
+    }
+
+    public int GetAnswer()
+    {
+        return _answer;
+    }
+
+    public void ResetAnswer()
+    {
+        _answer = -1;
     }
 }
