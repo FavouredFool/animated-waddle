@@ -5,6 +5,9 @@ using UnityEngine;
 public class PendulumScript : MonoBehaviour
 {
     [SerializeField]
+    private DeathTimeManager _deathTimeManager;
+
+    [SerializeField]
     private Transform _pendulumHead;
 
     [SerializeField, Range(0f, 90f)]
@@ -13,10 +16,11 @@ public class PendulumScript : MonoBehaviour
     [SerializeField]
     private float _speed;
 
-    private float _currentSwingAngle = 0f;
     private float _t = 0;
 
     private int _sign = 1;
+
+    private bool _hasBonked = false;
 
 
     private void Update()
@@ -25,6 +29,7 @@ public class PendulumScript : MonoBehaviour
 
         if (_t == 1 || _t == 0)
         {
+            _hasBonked = false;
             _sign *= -1;
         }
 
@@ -32,7 +37,22 @@ public class PendulumScript : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(angle, 0, 0);
 
-
+        if (_sign > 0)
+        {
+            if (_t > 0.5f && !_hasBonked)
+            {
+                _deathTimeManager.IncreaseDeathTime();
+                _hasBonked = true;
+            }
+        }
+        else
+        {
+            if (_t < 0.5f && !_hasBonked)
+            {
+                _deathTimeManager.IncreaseDeathTime();
+                _hasBonked = true;
+            }
+        }
         
     }
 }
