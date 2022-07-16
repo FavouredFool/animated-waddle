@@ -103,11 +103,11 @@ public class DialogManagerScript : MonoBehaviour
 
         if (result != 1)
         {
-            _dialogCanvas.SetGMText("You did not roll a one. That is bad.");
+            _dialogCanvas.SetGMText("You did not roll a one.");
         }
         else
         {
-            _dialogCanvas.SetGMText("You rolled a one. That is good.");
+            _dialogCanvas.SetGMText("You rolled a one. Good.");
         }
 
         yield return new WaitForSeconds(4);
@@ -121,7 +121,7 @@ public class DialogManagerScript : MonoBehaviour
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
 
-        _dialogCanvas.SetGMText("Everytime the pendulum passes me, we lose time.");
+        _dialogCanvas.SetGMText("Everytime the pendulum passes, we lose time.");
         yield return new WaitForSeconds(4);
 
         _dialogCanvas.SetGMText("");
@@ -133,7 +133,7 @@ public class DialogManagerScript : MonoBehaviour
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
 
-        _dialogCanvas.SetGMText("It is vital, that we never hear the midnight bell.");
+        _dialogCanvas.SetGMText("It is vital that we never hear the midnight bell.");
         yield return new WaitForSeconds(4);
 
         _dialogCanvas.SetGMText("");
