@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 0}
   _rotationStrength: 3.65
-  _timeUntilResult: 1
+  _timeUntilResult: 2
 --- !u!54 &394503883
 Rigidbody:
   m_ObjectHideFlags: 0

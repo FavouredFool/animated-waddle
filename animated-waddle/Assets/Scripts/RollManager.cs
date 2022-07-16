@@ -52,21 +52,20 @@ public class RollManager : MonoBehaviour
             int result = _playerDice.GetResult();
             if (result > 0)
             {
+
                 _latestResult = result;
                 gameState = GameState.EGO;
                 _canThrowFlag = true;
 
-                if (result == 1)
+                if (result == 2)
                 {
                     _deathTimeManager.DecreaseDeathTime();
                 }
-                
+
             }
         }
-
-        
-        
     }
+
 
     private void RollPlayerDice(float rollStrength, float rollHeight)
     {

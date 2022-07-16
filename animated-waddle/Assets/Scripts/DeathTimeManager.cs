@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeathTimeManager : MonoBehaviour
 {
-    int _deathTime = 5;
+    int _deathTime = 3;
 
     public int GetDeathTime()
     {

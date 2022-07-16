@@ -20,11 +20,15 @@ public class ClockScript : MonoBehaviour
     
     float _maxDeathStage = 16f;
 
+
     private void Start()
     {
         _deathStage = _deathTimeManager.GetDeathTime();
         _activeArmAngle = _deathStage / _maxDeathStage * 360f;
         _desiredArmAngle = _deathStage / _maxDeathStage * 360f;
+
+        // Play Audio
+        FindObjectOfType<AudioManager>().Play("ClockTicking");
     }
 
     private void Update()

@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerDiceScript : MonoBehaviour
 {
-    [SerializeField]
-    private Camera _camera;
-
     [SerializeField, Range(0f, 10f)]
     private float _rotationStrength;
 
@@ -16,6 +13,7 @@ public class PlayerDiceScript : MonoBehaviour
     // Properties
     bool OnGround => _isOnGroundFlag;
 
+    Camera _camera;
 
     private int _result = -1;
     private float _lastContactTime = float.PositiveInfinity;
@@ -27,16 +25,21 @@ public class PlayerDiceScript : MonoBehaviour
 
     private Vector2 _playerInput;
 
+    private AudioManager _audioManager;
+
+    private List<int> usedSounds;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _rb.isKinematic = true;
+        usedSounds = new List<int>();
     }
 
     public void Init(Camera camera)
     {
         _camera = camera;
+        _audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void Update()
@@ -51,6 +54,7 @@ public class PlayerDiceScript : MonoBehaviour
             _playerInput.y = 0;
         }
 
+        Debug.Log("deltatime: " + (Time.time - _lastContactTime));
         if (Time.time - _lastContactTime > _timeUntilResult)
         {
             // Give Result
@@ -170,6 +174,15 @@ public class PlayerDiceScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        int diceRollnr = Random.Range(1, 7);
+        while (usedSounds.Count < 5 && usedSounds.Contains(diceRollnr))
+        {
+            diceRollnr = Random.Range(1, 7);
+        }
+
+        usedSounds.Add(diceRollnr);
+
+        _audioManager.Play("diceroll" + diceRollnr);
         _isOnGroundFlag = true;
         _lastContactTime = Time.time;
         EvaluateCollision(collision);

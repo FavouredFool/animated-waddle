@@ -16,8 +16,11 @@ public class DialogManagerScript : MonoBehaviour
     int answer;
     int result;
 
+    AudioManager _manager;
+
     void Start()
     {
+        _manager = FindObjectOfType<AudioManager>();
         StartCoroutine("InitialDialog");
     }
 
@@ -30,7 +33,7 @@ public class DialogManagerScript : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         _dialogCanvas.SetGMText("Hello.");
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2);
 
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
@@ -70,25 +73,25 @@ public class DialogManagerScript : MonoBehaviour
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
 
-        _dialogCanvas.SetGMText("You have to roll ones now. Many of them.");
+        _dialogCanvas.SetGMText("You have to roll twos now. Many of them.");
         yield return new WaitForSeconds(4);
 
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
 
-        _dialogCanvas.SetGMText("You have some control over the dice. Use it to roll ones.");
+        _dialogCanvas.SetGMText("You have some control over the dice. Use it to roll twos.");
         yield return new WaitForSeconds(4);
 
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
 
         _dialogCanvas.SetGMText("You can find the dice on the table.");
-        yield return new WaitForSeconds(4);
-        _dialogCanvas.SetGMText("");
-
 
         // Unlock dice roll option
         _rollManager.SetCanThrowFlag(true);
+
+        yield return new WaitForSeconds(4);
+        _dialogCanvas.SetGMText("");
 
 
         // So lange warten bis Answer zurück kommt
@@ -101,13 +104,13 @@ public class DialogManagerScript : MonoBehaviour
         result = _rollManager.GetLatestResult();
         yield return new WaitForSeconds(1);
 
-        if (result != 1)
+        if (result != 2)
         {
-            _dialogCanvas.SetGMText("You did not roll a one.");
+            _dialogCanvas.SetGMText("You did not roll a two.");
         }
         else
         {
-            _dialogCanvas.SetGMText("You rolled a one. Good.");
+            _dialogCanvas.SetGMText("You rolled a two. Good.");
         }
 
         yield return new WaitForSeconds(4);
@@ -127,7 +130,7 @@ public class DialogManagerScript : MonoBehaviour
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
 
-        _dialogCanvas.SetGMText("Everytime you roll a one, we gain time.");
+        _dialogCanvas.SetGMText("Everytime you roll a two, we gain time.");
         yield return new WaitForSeconds(4);
 
         _dialogCanvas.SetGMText("");
@@ -156,7 +159,7 @@ public class DialogManagerScript : MonoBehaviour
 
         if (answer == 0)
         {
-            _dialogCanvas.SetGMText("It was an accident. A bad one. We will not make it. We can try anyway.");
+            _dialogCanvas.SetGMText("It was an accident. A bad one. We will likely not get through this. We can try anyway.");
             yield return new WaitForSeconds(4);
 
             _dialogCanvas.SetGMText("");

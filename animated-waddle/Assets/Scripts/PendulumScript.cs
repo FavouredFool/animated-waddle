@@ -5,6 +5,9 @@ using UnityEngine;
 public class PendulumScript : MonoBehaviour
 {
     [SerializeField]
+    private PendulumHeadSound _pendulumHeadSound;
+
+    [SerializeField]
     private DeathTimeManager _deathTimeManager;
 
     [SerializeField]
@@ -50,18 +53,20 @@ public class PendulumScript : MonoBehaviour
 
         if (_sign > 0)
         {
-            if (_t > 0.5f && !_hasBonked)
+            if (_t > 0.49f && !_hasBonked)
             {
                 _deathTimeManager.IncreaseDeathTime();
                 _hasBonked = true;
+                _pendulumHeadSound.PlaySound("gong");
             }
         }
         else
         {
-            if (_t < 0.5f && !_hasBonked)
+            if (_t < 0.51f && !_hasBonked)
             {
                 _deathTimeManager.IncreaseDeathTime();
                 _hasBonked = true;
+                _pendulumHeadSound.PlaySound("gong");
             }
         }
         
