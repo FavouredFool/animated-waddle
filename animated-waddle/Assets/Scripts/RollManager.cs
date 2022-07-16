@@ -28,10 +28,17 @@ public class RollManager : MonoBehaviour
 
     PlayerDiceScript _playerDice = null;
 
+    AudioManager _audioManager;
+
 
     private void Awake()
     {
         _canThrowFlag = false;
+    }
+
+    private void Start()
+    {
+        _audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void Update()
@@ -59,6 +66,7 @@ public class RollManager : MonoBehaviour
 
                 if (result == 2)
                 {
+                    _audioManager.Play("rolledTwo");
                     _deathTimeManager.DecreaseDeathTime();
                 }
 

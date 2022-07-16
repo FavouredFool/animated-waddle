@@ -13,10 +13,15 @@ public class DialogManagerScript : MonoBehaviour
     [SerializeField]
     DialogCanvasScript _dialogCanvas;
 
+    [SerializeField]
+    float _maxWaitTime = 10;
+
     int answer;
     int result;
 
     AudioManager _manager;
+
+    float _startTime;
 
     void Start()
     {
@@ -24,11 +29,320 @@ public class DialogManagerScript : MonoBehaviour
         StartCoroutine("InitialDialog");
     }
 
+    public void StartStage1Dialog()
+    {
+        StopAllDialog();
+
+        StartCoroutine("Stage1Dialog");
+    }
+
+    public void StartStage2Dialog()
+    {
+        StopAllDialog();
+        StartCoroutine("Stage2Dialog");
+    }
+
+    public void StartStage3Dialog()
+    {
+        StopAllDialog();
+        StartCoroutine("Stage3Dialog");
+    }
+
+    public void StartStage4Dialog()
+    {
+        StopAllDialog();
+        StartCoroutine("Stage4Dialog");
+    }
+
+    public void StartCongratz1Dialog()
+    {
+        StopAllDialog();
+        StartCoroutine("Contratz1Dialog");
+    }
+
+    public void StartCongratz2Dialog()
+    {
+        StopAllDialog();
+        StartCoroutine("Contratz2Dialog");
+    }
+
+    public void StopAllDialog()
+    {
+        StopAllCoroutines();
+    }
+
+    IEnumerator Contratz1Dialog()
+    {
+        yield return new WaitForSeconds(1);
+
+        _dialogCanvas.RemoveAnswerOptions();
+        _dialogCanvas.SetGMText("");
+
+        yield return new WaitForSeconds(1);
+
+        _manager.Play("talksound3s");
+        _dialogCanvas.SetGMText("Good.");
+        yield return new WaitForSeconds(3);
+
+        _dialogCanvas.SetGMText("");
+    }
+
+    IEnumerator Contratz2Dialog()
+    {
+        yield return new WaitForSeconds(1);
+
+        _dialogCanvas.RemoveAnswerOptions();
+        _dialogCanvas.SetGMText("");
+
+        yield return new WaitForSeconds(1);
+
+        _manager.Play("talksound4s");
+        _dialogCanvas.SetGMText("Another two. Very well done.");
+        yield return new WaitForSeconds(4);
+
+        _dialogCanvas.SetGMText("");
+
+    }
+
+    IEnumerator Stage4Dialog()
+    {
+        _dialogCanvas.RemoveAnswerOptions();
+        _dialogCanvas.SetGMText("");
+
+        // Initial Wait
+        yield return new WaitForSeconds(2);
+
+        _manager.Play("talksound2s");
+        _dialogCanvas.SetGMText("Look up.");
+        yield return new WaitForSeconds(2);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1);
+
+        _manager.Play("talksound4s");
+        _dialogCanvas.SetGMText("Our time together is nearly at an end.");
+        yield return new WaitForSeconds(4);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1);
+
+        _manager.Play("talksound4s");
+        _dialogCanvas.SetGMText("Soon we will have to say our goodbyes.");
+        yield return new WaitForSeconds(4);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1);
+
+        _manager.Play("talksound5s");
+        _dialogCanvas.SetGMText("Do not bother rolling. We are beyond the veil");
+        yield return new WaitForSeconds(5);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(3);
+
+        _manager.Play("talksound2s");
+        _dialogCanvas.SetGMText("I am");
+        yield return new WaitForSeconds(2);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1.5f);
+
+        _manager.Play("talksound2s");
+        _dialogCanvas.SetGMText("scared");
+        yield return new WaitForSeconds(2);
+
+        _dialogCanvas.SetGMText("");
+    }
+
+
+    IEnumerator Stage3Dialog()
+    {
+        _dialogCanvas.RemoveAnswerOptions();
+        _dialogCanvas.SetGMText("");
+
+        // Initial Wait
+        yield return new WaitForSeconds(1);
+
+        _manager.Play("talksound4s");
+        _dialogCanvas.SetGMText("The pendulum is getting faster.");
+        yield return new WaitForSeconds(4);
+
+        _dialogCanvas.SetGMText("");
+    }
+
+
+    IEnumerator Stage2Dialog()
+    {
+        _dialogCanvas.RemoveAnswerOptions();
+        _dialogCanvas.SetGMText("");
+
+        // Initial Wait
+        yield return new WaitForSeconds(3);
+
+        _manager.Play("talksound3s");
+        _dialogCanvas.SetGMText("You always respected yourself.");
+        yield return new WaitForSeconds(3);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1);
+
+        _manager.Play("talksound3s");
+        _dialogCanvas.SetGMText("And I apprechiate that immensely.");
+        yield return new WaitForSeconds(3);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1);
+
+        _manager.Play("talksound5s");
+        _dialogCanvas.SetGMText("It made me feel seen. Even through you did not know of me.");
+        yield return new WaitForSeconds(5);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1);
+
+        _manager.Play("talksound2s");
+        _dialogCanvas.SetGMText("But I know you.");
+        yield return new WaitForSeconds(2);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1);
+
+        _manager.Play("talksound4s");
+        _dialogCanvas.SetGMText("And I know that you will be missed.");
+        yield return new WaitForSeconds(4);
+
+        _dialogCanvas.SetGMText("");
+
+    }
+
+    IEnumerator Stage1Dialog()
+    {
+        _dialogCanvas.RemoveAnswerOptions();
+        _dialogCanvas.SetGMText("");
+
+        // Initial Wait
+        yield return new WaitForSeconds(4);
+
+        _manager.Play("talksound3s");
+        _dialogCanvas.SetGMText("Our time is depleting.");
+        yield return new WaitForSeconds(3);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1);
+
+        _manager.Play("talksound2s");
+        _dialogCanvas.SetGMText("Keep at it.");
+        yield return new WaitForSeconds(2);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1);
+
+
+
+        _dialogCanvas.SetAnswerOptions("I am trying.", "I am sorry.");
+
+        _startTime = Time.time;
+        // So lange warten bis Answer zurück kommt
+        while (_dialogCanvas.GetAnswer() == -1 && Time.time - _startTime < _maxWaitTime)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        answer = _dialogCanvas.GetAnswer();
+
+        _dialogCanvas.RemoveAnswerOptions();
+        _dialogCanvas.ResetAnswer();
+
+        yield return new WaitForSeconds(1);
+
+        if (answer == 0)
+        {
+            _manager.Play("talksound3s");
+            _dialogCanvas.SetGMText("I know. Concentrate.");
+            yield return new WaitForSeconds(3);
+        }
+        else if (answer == 1)
+        {
+            _manager.Play("talksound3s");
+            _dialogCanvas.SetGMText("Don't be. Concentrate.");
+            yield return new WaitForSeconds(3);
+        }
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1);
+
+
+
+        _manager.Play("talksound3s");
+        _dialogCanvas.SetGMText("You can do this.");
+        yield return new WaitForSeconds(3);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1);
+
+        _manager.Play("talksound2s");
+        _dialogCanvas.SetGMText("You have to.");
+        yield return new WaitForSeconds(2);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1);
+
+
+
+
+        _dialogCanvas.SetAnswerOptions("Tell me what happend to me.", "I will concentrate.");
+
+        _startTime = Time.time;
+        // So lange warten bis Answer zurück kommt
+        while (_dialogCanvas.GetAnswer() == -1 && Time.time - _startTime < _maxWaitTime)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        answer = _dialogCanvas.GetAnswer();
+
+        _dialogCanvas.RemoveAnswerOptions();
+        _dialogCanvas.ResetAnswer();
+
+        yield return new WaitForSeconds(1);
+
+        if (answer == 0)
+        {
+            _manager.Play("talksound3s");
+            _dialogCanvas.SetGMText("Drunk driving.");
+            yield return new WaitForSeconds(3);
+
+            _dialogCanvas.SetGMText("");
+            yield return new WaitForSeconds(1);
+
+            _manager.Play("talksound3s");
+            _dialogCanvas.SetGMText("Not you. Someone.");
+            yield return new WaitForSeconds(3);
+
+            _dialogCanvas.SetGMText("");
+            yield return new WaitForSeconds(1);
+
+            _manager.Play("talksound4s");
+            _dialogCanvas.SetGMText("You were just walking your dogs.");
+            yield return new WaitForSeconds(4);
+
+        }
+        else if (answer == 1)
+        {
+            _manager.Play("talksound3s");
+            _dialogCanvas.SetGMText("Thank you. Good luck.");
+            yield return new WaitForSeconds(3);
+        }
+
+        _dialogCanvas.SetGMText("");
+
+    }
+
     IEnumerator InitialDialog()
     {
         _dialogCanvas.RemoveAnswerOptions();
-
         _dialogCanvas.SetGMText("");
+
         yield return new WaitForSeconds(2);
 
 
@@ -41,7 +355,7 @@ public class DialogManagerScript : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         _manager.Play("talksound3s");
-        _dialogCanvas.SetGMText("It is time to roll dice.");
+        _dialogCanvas.SetGMText("It is time to roll the dice.");
         yield return new WaitForSeconds(3);
 
 
@@ -50,8 +364,9 @@ public class DialogManagerScript : MonoBehaviour
 
         _dialogCanvas.SetAnswerOptions("Where am I?", "Who are you?");
 
+        _startTime = Time.time;
         // So lange warten bis Answer zurück kommt
-        while (_dialogCanvas.GetAnswer() == -1)
+        while (_dialogCanvas.GetAnswer() == -1 && Time.time - _startTime < _maxWaitTime)
         {
             yield return new WaitForSeconds(0.1f);
         }
@@ -72,7 +387,7 @@ public class DialogManagerScript : MonoBehaviour
         else if (answer == 1)
         {
             _manager.Play("talksound4s");
-            _dialogCanvas.SetGMText("I am part of you. You were never meant to see me.");
+            _dialogCanvas.SetGMText("I am part of you. You were not meant to see me so soon.");
             yield return new WaitForSeconds(4);
         }
 
@@ -80,14 +395,14 @@ public class DialogManagerScript : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         _manager.Play("talksound3s");
-        _dialogCanvas.SetGMText("You have to roll twos now. Many of them.");
+        _dialogCanvas.SetGMText("You have to roll twos. Many of them.");
         yield return new WaitForSeconds(3);
 
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
 
         _manager.Play("talksound4s");
-        _dialogCanvas.SetGMText("You have some control over the dice. Use it to roll twos.");
+        _dialogCanvas.SetGMText("You have some control over the dice. Use it.");
         yield return new WaitForSeconds(4);
 
         _dialogCanvas.SetGMText("");
@@ -159,8 +474,9 @@ public class DialogManagerScript : MonoBehaviour
 
         _dialogCanvas.SetAnswerOptions("Why? What is going on?", "Then we should stop talking at once.");
 
+        _startTime = Time.time;
         // So lange warten bis Answer zurück kommt
-        while (_dialogCanvas.GetAnswer() == -1)
+        while (_dialogCanvas.GetAnswer() == -1 && Time.time - _startTime < _maxWaitTime)
         {
             yield return new WaitForSeconds(0.1f);
         }
@@ -175,7 +491,7 @@ public class DialogManagerScript : MonoBehaviour
         if (answer == 0)
         {
             _manager.Play("talksound5s");
-            _dialogCanvas.SetGMText("It was an accident. A bad one. We will likely not get through this. We can try anyway.");
+            _dialogCanvas.SetGMText("It was an accident. A bad one. We are not expected to get through this. We can try anyway.");
             yield return new WaitForSeconds(5);
 
             _dialogCanvas.SetGMText("");
@@ -194,8 +510,18 @@ public class DialogManagerScript : MonoBehaviour
             _rollManager.SetCanThrowFlag(true);
             yield return new WaitForSeconds(2);
         }
+        else
+        {
+            _manager.Play("talksound4s");
+            _dialogCanvas.SetGMText("Not one for many words? Good. Roll the dice.");
+            _rollManager.SetCanThrowFlag(true);
+            yield return new WaitForSeconds(4);
+        }
 
         _dialogCanvas.SetGMText("");
+
+        yield return new WaitForSeconds(5);
+        _deathTimeManager.InitialDialogOver();
 
     }
 

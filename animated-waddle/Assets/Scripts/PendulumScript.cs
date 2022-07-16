@@ -30,6 +30,8 @@ public class PendulumScript : MonoBehaviour
 
     private bool _hasBonked = false;
 
+    private bool _swinging = true;
+
 
     private void Awake()
     {
@@ -38,6 +40,11 @@ public class PendulumScript : MonoBehaviour
 
     private void Update()
     {
+        if (!_swinging)
+        {
+            return;
+        }
+
         _t = Mathf.Clamp01(_t + _speed * _sign * Time.deltaTime);
 
         if (_t == 1 || _t == 0)
@@ -53,22 +60,34 @@ public class PendulumScript : MonoBehaviour
 
         if (_sign > 0)
         {
-            if (_t > 0.49f && !_hasBonked)
+            if (_t >= 0.50f && !_hasBonked)
             {
                 _deathTimeManager.IncreaseDeathTime();
                 _hasBonked = true;
                 _pendulumHeadSound.PlaySound("gong");
+
+                if (_deathTimeManager.GetDeathTime() == 16)
+                {
+                    _swinging = false;
+                }
             }
         }
         else
         {
-            if (_t < 0.51f && !_hasBonked)
+            if (_t <= 0.50f && !_hasBonked)
             {
                 _deathTimeManager.IncreaseDeathTime();
                 _hasBonked = true;
                 _pendulumHeadSound.PlaySound("gong");
+
+                if (_deathTimeManager.GetDeathTime() == 16)
+                {
+                    _swinging = false;
+                }
             }
         }
+
         
     }
+
 }

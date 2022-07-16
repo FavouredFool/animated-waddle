@@ -29,6 +29,8 @@ public class PlayerDiceScript : MonoBehaviour
 
     private List<int> usedSounds;
 
+    private int _collisionCount;
+
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -174,6 +176,8 @@ public class PlayerDiceScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        _collisionCount += 1;
+
         int diceRollnr = Random.Range(1, 7);
         while (usedSounds.Count < 5 && usedSounds.Contains(diceRollnr))
         {
@@ -190,8 +194,16 @@ public class PlayerDiceScript : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        _isOnGroundFlag = false;
-        _lastContactTime = float.PositiveInfinity;
+        _collisionCount -= 1;
+
+        if (_collisionCount == 0)
+        {
+            _lastContactTime = float.PositiveInfinity;
+            _isOnGroundFlag = false;
+        }
+
+        
+        
         EvaluateCollision(collision);
     }
 

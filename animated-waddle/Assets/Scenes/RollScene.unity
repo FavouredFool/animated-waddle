@@ -7782,7 +7782,7 @@ MonoBehaviour:
     sourceObject: {fileID: 1235592005}
     clip: {fileID: 8300000, guid: 395ab32bce76c2049ad793cad10af82e, type: 3}
     source: {fileID: 0}
-    volume: 0.85
+    volume: 1
     pitch: 0.5
     spacialBlend: 0
     priority: 200
@@ -7791,7 +7791,7 @@ MonoBehaviour:
     sourceObject: {fileID: 1235592005}
     clip: {fileID: 8300000, guid: 81c500c0f01e83d49bbbd10f799c34c3, type: 3}
     source: {fileID: 0}
-    volume: 0.118
+    volume: 0.5
     pitch: 1
     spacialBlend: 0
     priority: 21
@@ -7885,6 +7885,15 @@ MonoBehaviour:
     pitch: 1
     spacialBlend: 0
     priority: 243
+    loop: 0
+  - name: rolledTwo
+    sourceObject: {fileID: 167213156}
+    clip: {fileID: 8300000, guid: 42bdacd6d53ffa94fafa59e52f4fd70e, type: 3}
+    source: {fileID: 0}
+    volume: 0.05
+    pitch: 0.75
+    spacialBlend: 0
+    priority: 30
     loop: 0
 --- !u!4 &167213158
 Transform:
@@ -10543,9 +10552,9 @@ MonoBehaviour:
   _pendulumHeadSound: {fileID: 1235592011}
   _deathTimeManager: {fileID: 1302911446}
   _pendulumHead: {fileID: 1020980748}
-  _maximumSwingAngle: 65
+  _maximumSwingAngle: 45
   _startSpeed: 0.02
-  _speedIncrease: 0.01
+  _speedIncrease: 0.003
 --- !u!1 &1214838627
 GameObject:
   m_ObjectHideFlags: 0
@@ -18087,6 +18096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0292d400527e214d96a21cb86733da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dialogManager: {fileID: 1817774856}
 --- !u!4 &1302911447
 Transform:
   m_ObjectHideFlags: 0
@@ -26971,6 +26981,7 @@ MonoBehaviour:
   _rollManager: {fileID: 486110638}
   _deathTimeManager: {fileID: 1302911446}
   _dialogCanvas: {fileID: 642884708}
+  _maxWaitTime: 15
 --- !u!4 &1817774857
 Transform:
   m_ObjectHideFlags: 0
