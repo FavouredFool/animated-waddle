@@ -5,6 +5,9 @@ using UnityEngine;
 public class RollManager : MonoBehaviour
 {
     [SerializeField]
+    private DeathTimeManager _deathTimeManager;
+
+    [SerializeField]
     private PlayerDiceScript _playerDiceBlueprint;
 
     [SerializeField]
@@ -46,10 +49,15 @@ public class RollManager : MonoBehaviour
             int result = _playerDice.GetResult();
             if (result > 0)
             {
-                Debug.Log("result: " + result);
                 _latestResult = result;
                 gameState = GameState.EGO;
                 _canThrowFlag = true;
+
+                if (result == 1)
+                {
+                    _deathTimeManager.DecreaseDeathTime();
+                }
+                
             }
         }
 

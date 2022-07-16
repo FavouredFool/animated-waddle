@@ -14,6 +14,11 @@ public class PendulumScript : MonoBehaviour
     private float _maximumSwingAngle;
 
     [SerializeField]
+    private float _startSpeed;
+
+    [SerializeField]
+    private float _speedIncrease;
+
     private float _speed;
 
     private float _t = 0;
@@ -23,12 +28,18 @@ public class PendulumScript : MonoBehaviour
     private bool _hasBonked = false;
 
 
+    private void Awake()
+    {
+        _speed = _startSpeed;
+    }
+
     private void Update()
     {
         _t = Mathf.Clamp01(_t + _speed * _sign * Time.deltaTime);
 
         if (_t == 1 || _t == 0)
         {
+            _speed += _speedIncrease;
             _hasBonked = false;
             _sign *= -1;
         }
