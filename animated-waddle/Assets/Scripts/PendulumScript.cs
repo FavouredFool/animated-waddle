@@ -64,11 +64,15 @@ public class PendulumScript : MonoBehaviour
             {
                 _deathTimeManager.IncreaseDeathTime();
                 _hasBonked = true;
-                _pendulumHeadSound.PlaySound("gong");
-
+                
                 if (_deathTimeManager.GetDeathTime() == 16)
                 {
+                    _pendulumHeadSound.PlaySound("midnightGong");
                     _swinging = false;
+                }
+                else
+                {
+                    _pendulumHeadSound.PlaySound("gong");
                 }
             }
         }
@@ -78,11 +82,16 @@ public class PendulumScript : MonoBehaviour
             {
                 _deathTimeManager.IncreaseDeathTime();
                 _hasBonked = true;
-                _pendulumHeadSound.PlaySound("gong");
+                
 
                 if (_deathTimeManager.GetDeathTime() == 16)
                 {
+                    _pendulumHeadSound.PlaySound("midnightGong");
                     _swinging = false;
+                }
+                else
+                {
+                    _pendulumHeadSound.PlaySound("gong");
                 }
             }
         }

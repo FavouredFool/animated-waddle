@@ -5,6 +5,9 @@ using UnityEngine;
 public class DialogManagerScript : MonoBehaviour
 {
     [SerializeField]
+    GameLogic _gameLogic;
+
+    [SerializeField]
     RollManager _rollManager;
 
     [SerializeField]
@@ -54,6 +57,12 @@ public class DialogManagerScript : MonoBehaviour
         StartCoroutine("Stage4Dialog");
     }
 
+    public void StartFinalDialog()
+    {
+        StopAllDialog();
+        StartCoroutine("FinalDialog");
+    }
+
     public void StartCongratz1Dialog()
     {
         StopAllDialog();
@@ -71,10 +80,85 @@ public class DialogManagerScript : MonoBehaviour
         StopAllCoroutines();
     }
 
+    IEnumerator FinalDialog()
+    {
+        _dialogCanvas.RemoveAnswerOptions();
+        _dialogCanvas.SetGMText("");
+
+        yield return new WaitForSeconds(2);
+
+        _manager.Play("talksound3s");
+        _dialogCanvas.SetGMText("This is it.");
+        yield return new WaitForSeconds(3);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1.5f);
+
+        _manager.Play("talksound2s");
+        _dialogCanvas.SetGMText("Death.");
+        yield return new WaitForSeconds(2);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(3f);
+
+        _manager.Play("talksound5s");
+        _dialogCanvas.SetGMText("I wish we had more time, but");
+        yield return new WaitForSeconds(5);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1.5f);
+
+        _manager.Play("talksound3s");
+        _dialogCanvas.SetGMText("...");
+        yield return new WaitForSeconds(3);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(3f);
+
+        _manager.Play("talksound4s");
+        _dialogCanvas.SetGMText("I loved being a part of you.");
+        yield return new WaitForSeconds(4);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(1f);
+
+        _manager.Play("talksound3s");
+        _dialogCanvas.SetGMText("In fact...");
+        yield return new WaitForSeconds(3);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(2f);
+
+        _manager.Play("talksound4s");
+        _dialogCanvas.SetGMText("I love you. Dearly.");
+        yield return new WaitForSeconds(4);
+
+        _dialogCanvas.SetGMText("");
+        yield return new WaitForSeconds(2f);
+
+        _dialogCanvas.SetAnswerOptions("...", "I love you too.");
+
+        _startTime = Time.time;
+        // So lange warten bis Answer zurück kommt
+        while (_dialogCanvas.GetAnswer() == -1)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        answer = _dialogCanvas.GetAnswer();
+
+        _dialogCanvas.RemoveAnswerOptions();
+        _dialogCanvas.ResetAnswer();
+
+        yield return new WaitForSeconds(2);
+
+        _gameLogic.StartEnding();
+
+
+    }
+
     IEnumerator Contratz1Dialog()
     {
-        yield return new WaitForSeconds(1);
-
         _dialogCanvas.RemoveAnswerOptions();
         _dialogCanvas.SetGMText("");
 
@@ -89,8 +173,6 @@ public class DialogManagerScript : MonoBehaviour
 
     IEnumerator Contratz2Dialog()
     {
-        yield return new WaitForSeconds(1);
-
         _dialogCanvas.RemoveAnswerOptions();
         _dialogCanvas.SetGMText("");
 
@@ -186,9 +268,9 @@ public class DialogManagerScript : MonoBehaviour
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
 
-        _manager.Play("talksound3s");
-        _dialogCanvas.SetGMText("And I apprechiate that immensely.");
-        yield return new WaitForSeconds(3);
+        _manager.Play("talksound5s");
+        _dialogCanvas.SetGMText("Being a part of you, I always apprechiated that immensely.");
+        yield return new WaitForSeconds(5);
 
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
@@ -200,9 +282,9 @@ public class DialogManagerScript : MonoBehaviour
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
 
-        _manager.Play("talksound2s");
+        _manager.Play("talksound3s");
         _dialogCanvas.SetGMText("But I know you.");
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
 
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
