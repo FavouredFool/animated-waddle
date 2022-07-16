@@ -185,7 +185,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 86cac4bf0443c334a8f9eb16b24bcbb5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7782,7 +7782,7 @@ MonoBehaviour:
     sourceObject: {fileID: 1235592005}
     clip: {fileID: 8300000, guid: 395ab32bce76c2049ad793cad10af82e, type: 3}
     source: {fileID: 0}
-    volume: 0.518
+    volume: 0.85
     pitch: 0.5
     spacialBlend: 0
     priority: 200
@@ -7849,6 +7849,42 @@ MonoBehaviour:
     pitch: 1
     spacialBlend: 0
     priority: 227
+    loop: 0
+  - name: talksound2s
+    sourceObject: {fileID: 167213156}
+    clip: {fileID: 8300000, guid: 0a58d273608d2b549af64f5676ef5730, type: 3}
+    source: {fileID: 0}
+    volume: 0.4
+    pitch: 1
+    spacialBlend: 0
+    priority: 243
+    loop: 0
+  - name: talksound3s
+    sourceObject: {fileID: 167213156}
+    clip: {fileID: 8300000, guid: cd5f74c6bcc81b7479f7752125e74f99, type: 3}
+    source: {fileID: 0}
+    volume: 0.4
+    pitch: 1
+    spacialBlend: 0
+    priority: 243
+    loop: 0
+  - name: talksound4s
+    sourceObject: {fileID: 167213156}
+    clip: {fileID: 8300000, guid: 9a1cebcdc4fdcd048999887a865616f3, type: 3}
+    source: {fileID: 0}
+    volume: 0.65
+    pitch: 1
+    spacialBlend: 0
+    priority: 243
+    loop: 0
+  - name: talksound5s
+    sourceObject: {fileID: 167213156}
+    clip: {fileID: 8300000, guid: 08e7d793056c3aa438f595e500dcd45b, type: 3}
+    source: {fileID: 0}
+    volume: 0.65
+    pitch: 1
+    spacialBlend: 0
+    priority: 243
     loop: 0
 --- !u!4 &167213158
 Transform:
