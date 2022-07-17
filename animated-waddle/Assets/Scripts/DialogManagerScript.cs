@@ -428,17 +428,17 @@ public class DialogManagerScript : MonoBehaviour
         yield return new WaitForSeconds(2);
 
 
-        _manager.Play("talksound2s");
+        _manager.Play("talksound3s");
         _dialogCanvas.SetGMText("Hello.");
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
 
 
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
 
-        _manager.Play("talksound3s");
+        _manager.Play("talksound45s");
         _dialogCanvas.SetGMText("It is time to roll our destiny.");
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4.5f);
 
 
         _dialogCanvas.SetGMText("");
@@ -462,22 +462,22 @@ public class DialogManagerScript : MonoBehaviour
 
         if (answer == 0)
         {
-            _manager.Play("talksound5s");
+            _manager.Play("talksound75s");
             _dialogCanvas.SetGMText("You are looking inside yourself. You lost the ability to look anywhere else.");
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(7.5f);
         }
         else if (answer == 1)
         {
-            _manager.Play("talksound3s");
+            _manager.Play("talksound45s");
             _dialogCanvas.SetGMText("I am part of you.");
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(4.5f);
 
             _dialogCanvas.SetGMText("");
             yield return new WaitForSeconds(1);
 
-            _manager.Play("talksound4s");
+            _manager.Play("talksound6s");
             _dialogCanvas.SetGMText("You were not meant to see me so soon.");
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(6f);
         }
 
         _dialogCanvas.SetGMText("");
