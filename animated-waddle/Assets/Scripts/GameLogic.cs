@@ -40,7 +40,7 @@ public class GameLogic : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
         }
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
 
         QuitApplication();
 
