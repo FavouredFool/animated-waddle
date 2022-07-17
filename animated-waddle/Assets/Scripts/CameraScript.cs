@@ -10,7 +10,7 @@ public class CameraScript : MonoBehaviour
     [SerializeField]
     RollManager _rollManager;
 
-    [SerializeField, Range(0.01f, 1)]
+    [SerializeField, Range(1f, 200f)]
     float _mouseSensitivity;
 
     [SerializeField, Range(1f, 20f)]
@@ -36,20 +36,30 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         _regularCamera = GetComponent<Camera>();
+        currentLook.y = 0;
+        currentLook.x = 0;
+
     }
 
     void LateUpdate()
     {
         if (_rollManager.gameState == RollManager.GameState.EGO)
         {
+
+            // i hope this doesnt fuck me
+            if (Time.deltaTime > 0.1f)
+            {
+                return;
+            }
+
             Vector2 playerInput;
             playerInput.x = Input.GetAxis("Mouse X");
             playerInput.y = Input.GetAxis("Mouse Y");
 
             playerInput = Vector2.ClampMagnitude(playerInput, 1f);
 
-            playerInput.x *= _mouseSensitivity;
-            playerInput.y *= _mouseSensitivity;
+            playerInput.x *= (_mouseSensitivity * Time.deltaTime);
+            playerInput.y *= (_mouseSensitivity * Time.deltaTime);
 
             currentLook.x = Mathf.Clamp(currentLook.x += playerInput.x, -_maxHorizontalEgoRotation, _maxHorizontalEgoRotation);
             currentLook.y = Mathf.Clamp(currentLook.y += playerInput.y, -_maxVerticalEgoRotation, _maxVerticalEgoRotation);

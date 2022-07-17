@@ -8,7 +8,10 @@ public class DeathTimeManager : MonoBehaviour
     [SerializeField]
     DialogManagerScript _dialogManager;
 
-    int _deathTime = 2;
+    [SerializeField]
+    GameLogic _gameLogic;
+
+    int _deathTime = 1;
 
     bool _initialDialogOver = false;
 
@@ -37,7 +40,7 @@ public class DeathTimeManager : MonoBehaviour
             _dialogManager.StartStage2Dialog();
         }
 
-        if (_deathTime == 11 && !stage3happend)
+        if (_deathTime == 12 && !stage3happend)
         {
             stage3happend = true;
             _dialogManager.StartStage3Dialog();
@@ -53,6 +56,7 @@ public class DeathTimeManager : MonoBehaviour
         {
             stage5happend = true;
             StartFinale();
+            
         }
     }
 
@@ -84,6 +88,7 @@ public class DeathTimeManager : MonoBehaviour
 
     public void StartFinale()
     {
+        _gameLogic.StartEnding();
         _dialogManager.StartFinalDialog();
     }
 

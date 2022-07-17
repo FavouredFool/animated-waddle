@@ -54,7 +54,7 @@ public class RollManager : MonoBehaviour
                 _diceStack.RemoveDice();
 
                 float strength = Random.Range(35f, 50f);
-                float height = Random.Range(0.2f, 0.35f);
+                float height = Random.Range(0.1f, 0.35f);
                 float randomOffset = Random.Range(-1f, 1f);
 
                 Debug.Log("strength: " + strength + " height: " + height + " randomOffset: " + randomOffset);
@@ -76,7 +76,7 @@ public class RollManager : MonoBehaviour
 
                 if (result == 2)
                 {
-                    _audioManager.Play("rolledTwo");
+                    _audioManager.Play("heartbeat");
                     _deathTimeManager.DecreaseDeathTime();
                 }
 

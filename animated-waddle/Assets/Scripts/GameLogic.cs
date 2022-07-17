@@ -22,18 +22,28 @@ public class GameLogic : MonoBehaviour
         StartCoroutine(Ending());
     }
 
+    public void QuitApplication()
+    {
+        Application.Quit();
+    }
+
     IEnumerator Ending()
     {
-        
+
+        yield return new WaitForSeconds(21.5f);
+        FindObjectOfType<AudioManager>().Play("Flatline");
+
+        yield return new WaitForSeconds(16f);
+
         for (int i = 0; i <= 100; i++)
         {
             _crossfade.color = new Color(1, 1, 1, i/100f);
             yield return new WaitForSeconds(0.02f);
         }
 
-        yield return new WaitForSeconds(2f);
-           
-        FindObjectOfType<AudioManager>().Play("EndingAudioLine");
+        yield return new WaitForSeconds(5f);
+
+        QuitApplication();
 
     }
 
