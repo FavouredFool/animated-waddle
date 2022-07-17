@@ -10,7 +10,7 @@ public class CameraScript : MonoBehaviour
     [SerializeField]
     RollManager _rollManager;
 
-    [SerializeField, Range(1f, 200f)]
+    [SerializeField, Range(0f, 200f)]
     float _mouseSensitivity;
 
     [SerializeField, Range(1f, 20f)]
@@ -58,8 +58,8 @@ public class CameraScript : MonoBehaviour
 
             //playerInput = Vector2.ClampMagnitude(playerInput, 1f);
 
-            playerInput.x *= (_mouseSensitivity * Time.deltaTime);
-            playerInput.y *= (_mouseSensitivity * Time.deltaTime);
+            playerInput.x *= (_mouseSensitivity);
+            playerInput.y *= (_mouseSensitivity);
 
             currentLook.x = Mathf.Clamp(currentLook.x += playerInput.x, -_maxHorizontalEgoRotation, _maxHorizontalEgoRotation);
             currentLook.y = Mathf.Clamp(currentLook.y += playerInput.y, -_maxVerticalEgoRotation, _maxVerticalEgoRotation);
