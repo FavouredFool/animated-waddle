@@ -16,6 +16,9 @@ public class RollManager : MonoBehaviour
     [SerializeField]
     private CameraScript _cameraScript;
 
+    [SerializeField]
+    private DiceStackScript _diceStack;
+
 
     public enum GameState { EGO, ROLLING }
 
@@ -48,8 +51,15 @@ public class RollManager : MonoBehaviour
             if (_canThrowFlag)
             {
                 gameState = GameState.ROLLING;
-                
-                RollPlayerDice(40f, 0.2f);
+                _diceStack.RemoveDice();
+
+                float strength = Random.Range(35f, 50f);
+                float height = Random.Range(0.2f, 0.35f);
+                float randomOffset = Random.Range(-1f, 1f);
+
+                Debug.Log("strength: " + strength + " height: " + height + " randomOffset: " + randomOffset);
+
+                RollPlayerDice(strength, height, randomOffset);
             }
             
         }
@@ -75,7 +85,7 @@ public class RollManager : MonoBehaviour
     }
 
 
-    private void RollPlayerDice(float rollStrength, float rollHeight)
+    private void RollPlayerDice(float rollStrength, float rollHeight, float randomOffset)
     {
         _playerDice = Instantiate(_playerDiceBlueprint, _playerDiceSpawnPosition.position, _playerDiceSpawnPosition.rotation);
         _playerDice.Init(_cameraScript.GetComponent<Camera>());
@@ -86,8 +96,6 @@ public class RollManager : MonoBehaviour
         _canThrowFlag = false;
 
         _playerDice.GetRigidbody().isKinematic = false;
-
-        float randomOffset = Random.Range(-0.5f, 0.5f);
 
         Vector3 explosionPosition = _playerDice.transform.position - new Vector3(1, 1, randomOffset);
 

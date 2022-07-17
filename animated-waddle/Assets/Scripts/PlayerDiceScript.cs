@@ -56,7 +56,6 @@ public class PlayerDiceScript : MonoBehaviour
             _playerInput.y = 0;
         }
 
-        Debug.Log("deltatime: " + (Time.time - _lastContactTime));
         if (Time.time - _lastContactTime > _timeUntilResult)
         {
             // Give Result
@@ -70,12 +69,12 @@ public class PlayerDiceScript : MonoBehaviour
         Vector3 direction = Vector3.zero;
         float forward, back, right, left, up, down;
 
-        forward = Vector3.Distance(_contactNormal, transform.forward);
-        back = Vector3.Distance(_contactNormal, -transform.forward);
-        right = Vector3.Distance(_contactNormal, transform.right);
-        left = Vector3.Distance(_contactNormal, -transform.right);
-        up = Vector3.Distance(_contactNormal, transform.up);
-        down = Vector3.Distance(_contactNormal, -transform.up);
+        forward = Vector3.Distance(Vector3.up, transform.forward);
+        back = Vector3.Distance(Vector3.up, -transform.forward);
+        right = Vector3.Distance(Vector3.up, transform.right);
+        left = Vector3.Distance(Vector3.up, -transform.right);
+        up = Vector3.Distance(Vector3.up, transform.up);
+        down = Vector3.Distance(Vector3.up, -transform.up);
 
         float result = Mathf.Min(forward, back, right, left, up, down);
 

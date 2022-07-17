@@ -84,7 +84,7 @@ public class DeathTimeManager : MonoBehaviour
 
     public void StartFinale()
     {
-        Debug.Log("FINALE");
+        _dialogManager.StartFinalDialog();
     }
 
     public int GetDeathTime()

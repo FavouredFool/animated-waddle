@@ -230,7 +230,7 @@ public class DialogManagerScript : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         _manager.Play("talksound2s");
-        _dialogCanvas.SetGMText("scared");
+        _dialogCanvas.SetGMText("scared.");
         yield return new WaitForSeconds(2);
 
         _dialogCanvas.SetGMText("");
@@ -437,7 +437,7 @@ public class DialogManagerScript : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         _manager.Play("talksound3s");
-        _dialogCanvas.SetGMText("It is time to roll the dice.");
+        _dialogCanvas.SetGMText("It is time to roll our destiny.");
         yield return new WaitForSeconds(3);
 
 
@@ -468,8 +468,15 @@ public class DialogManagerScript : MonoBehaviour
         }
         else if (answer == 1)
         {
+            _manager.Play("talksound3s");
+            _dialogCanvas.SetGMText("I am part of you.");
+            yield return new WaitForSeconds(3);
+
+            _dialogCanvas.SetGMText("");
+            yield return new WaitForSeconds(1);
+
             _manager.Play("talksound4s");
-            _dialogCanvas.SetGMText("I am part of you. You were not meant to see me so soon.");
+            _dialogCanvas.SetGMText("You were not meant to see me so soon.");
             yield return new WaitForSeconds(4);
         }
 
@@ -484,7 +491,7 @@ public class DialogManagerScript : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         _manager.Play("talksound4s");
-        _dialogCanvas.SetGMText("You have some control over the dice. Use it.");
+        _dialogCanvas.SetGMText("You have some control over the dice.\nUse it.");
         yield return new WaitForSeconds(4);
 
         _dialogCanvas.SetGMText("");
@@ -572,9 +579,16 @@ public class DialogManagerScript : MonoBehaviour
 
         if (answer == 0)
         {
-            _manager.Play("talksound5s");
-            _dialogCanvas.SetGMText("It was an accident. A bad one. We are not expected to get through this. We can try anyway.");
-            yield return new WaitForSeconds(5);
+            _manager.Play("talksound3s");
+            _dialogCanvas.SetGMText("It was an accident. A bad one.");
+            yield return new WaitForSeconds(3);
+
+            _dialogCanvas.SetGMText("");
+            yield return new WaitForSeconds(1);
+
+            _manager.Play("talksound4s");
+            _dialogCanvas.SetGMText("We are not expected to get through this. We can try anyway.");
+            yield return new WaitForSeconds(4);
 
             _dialogCanvas.SetGMText("");
             yield return new WaitForSeconds(1);
