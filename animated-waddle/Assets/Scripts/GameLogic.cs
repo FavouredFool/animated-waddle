@@ -29,7 +29,7 @@ public class GameLogic : MonoBehaviour
     IEnumerator Ending()
     {
 
-        yield return new WaitForSeconds(21.5f);
+        yield return new WaitForSeconds(23.5f);
         FindObjectOfType<AudioManager>().Play("Flatline");
 
         yield return new WaitForSeconds(16f);

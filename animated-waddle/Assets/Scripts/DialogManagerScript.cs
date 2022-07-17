@@ -113,11 +113,11 @@ public class DialogManagerScript : MonoBehaviour
         yield return new WaitForSeconds(4);
 
         _dialogCanvas.SetGMText("");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
 
         _manager.Play("talksound3s");
         _dialogCanvas.SetGMText("...");
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
 
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(3f);
