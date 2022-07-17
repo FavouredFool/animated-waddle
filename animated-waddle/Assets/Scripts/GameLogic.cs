@@ -13,7 +13,6 @@ public class GameLogic : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        //StartEnding();
     }
 
 

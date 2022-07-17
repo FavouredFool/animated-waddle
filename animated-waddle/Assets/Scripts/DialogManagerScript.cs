@@ -218,6 +218,8 @@ public class DialogManagerScript : MonoBehaviour
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
 
+        _rollManager.SetCanThrowFlag(false);
+
         _manager.Play("talksound5s");
         _dialogCanvas.SetGMText("Do not bother rolling. We are beyond the veil.");
         yield return new WaitForSeconds(5);
@@ -524,7 +526,7 @@ public class DialogManagerScript : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         _manager.Play("talksound3s");
-        _dialogCanvas.SetGMText("It is important.");
+        _dialogCanvas.SetGMText("It is vitally important.");
         yield return new WaitForSeconds(3f);
 
         _dialogCanvas.SetGMText("");
@@ -634,7 +636,7 @@ public class DialogManagerScript : MonoBehaviour
             yield return new WaitForSeconds(1);
 
             _manager.Play("talksound5s");
-            _dialogCanvas.SetGMText("We are not expected to get through this.");
+            _dialogCanvas.SetGMText("You are not expected to get through this.");
             yield return new WaitForSeconds(5);
 
             _dialogCanvas.SetGMText("");
