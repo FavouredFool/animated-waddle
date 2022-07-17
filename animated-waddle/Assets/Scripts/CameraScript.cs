@@ -56,7 +56,7 @@ public class CameraScript : MonoBehaviour
             playerInput.x = Input.GetAxis("Mouse X");
             playerInput.y = Input.GetAxis("Mouse Y");
 
-            playerInput = Vector2.ClampMagnitude(playerInput, 1f);
+            //playerInput = Vector2.ClampMagnitude(playerInput, 1f);
 
             playerInput.x *= (_mouseSensitivity * Time.deltaTime);
             playerInput.y *= (_mouseSensitivity * Time.deltaTime);

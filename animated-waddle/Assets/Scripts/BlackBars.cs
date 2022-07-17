@@ -6,6 +6,11 @@ public class BlackBars : MonoBehaviour
 {
     Camera thisCamera;
     public Vector2 resolution = new Vector3(1920f, 1080f);
+
+    private void Start()
+    {
+        Screen.SetResolution(1920, 1080, FullScreenMode.MaximizedWindow);
+    }
     void Update()
     {
         thisCamera = GetComponent<Camera>();
