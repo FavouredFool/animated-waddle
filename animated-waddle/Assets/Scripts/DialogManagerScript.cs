@@ -273,7 +273,7 @@ public class DialogManagerScript : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         _manager.Play("talksound5s");
-        _dialogCanvas.SetGMText("Being a part of you, I apprechiated that.");
+        _dialogCanvas.SetGMText("Being a part of you, I apprechiate that.");
         yield return new WaitForSeconds(5);
 
         _dialogCanvas.SetGMText("");
@@ -608,7 +608,7 @@ public class DialogManagerScript : MonoBehaviour
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
 
-        _dialogCanvas.SetAnswerOptions("Why? What is going on?", "Alright.");
+        _dialogCanvas.SetAnswerOptions("Why? What is going on?", "I understand.");
 
         _startTime = Time.time;
         // So lange warten bis Answer zurück kommt

@@ -11,6 +11,8 @@ public class BlackBars : MonoBehaviour
     {
         Screen.SetResolution(1920, 1080, FullScreenMode.MaximizedWindow);
     }
+
+    /**
     void Update()
     {
         thisCamera = GetComponent<Camera>();
@@ -20,4 +22,5 @@ public class BlackBars : MonoBehaviour
         Vector2 size = resNormalized / Mathf.Max(resNormalized.x, resNormalized.y);
         thisCamera.rect = new Rect(default, size) { center = new Vector2(0.5f, 0.5f) };
     }
+    */
 }

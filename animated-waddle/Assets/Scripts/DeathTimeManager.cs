@@ -28,7 +28,7 @@ public class DeathTimeManager : MonoBehaviour
     {
         
 
-        if (_deathTime == 6 && !stage1happend)
+        if (_deathTime == 7 && !stage1happend)
         {
             stage1happend = true;
             _dialogManager.StartStage1Dialog();
