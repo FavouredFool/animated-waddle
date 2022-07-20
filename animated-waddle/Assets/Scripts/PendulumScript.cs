@@ -65,7 +65,7 @@ public class PendulumScript : MonoBehaviour
                 _deathTimeManager.IncreaseDeathTime();
                 _hasBonked = true;
                 
-                if (_deathTimeManager.GetDeathTime() == 16)
+                if (_deathTimeManager.GetDeathTime() >= 32)
                 {
                     _pendulumHeadSound.PlaySound("midnightGong");
                     _swinging = false;
@@ -84,7 +84,7 @@ public class PendulumScript : MonoBehaviour
                 _hasBonked = true;
                 
 
-                if (_deathTimeManager.GetDeathTime() == 16)
+                if (_deathTimeManager.GetDeathTime() >= 32)
                 {
                     FindObjectOfType<AudioManager>().StopPlaying("ClockTicking");
                     _pendulumHeadSound.PlaySound("midnightGong");

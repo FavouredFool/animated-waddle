@@ -11,7 +11,7 @@ public class DeathTimeManager : MonoBehaviour
     [SerializeField]
     GameLogic _gameLogic;
 
-    int _deathTime = 1;
+    int _deathTime = 2;
 
     bool _initialDialogOver = false;
 
@@ -28,32 +28,33 @@ public class DeathTimeManager : MonoBehaviour
     {
         
 
-        if (_deathTime == 7 && !stage1happend)
+        if (_deathTime >= 12 && !stage1happend)
         {
             stage1happend = true;
             _dialogManager.StartStage1Dialog();
         }
 
-        if (_deathTime == 9 && !stage2happend)
+        if (_deathTime >= 18 && !stage2happend)
         {
             stage2happend = true;
             _dialogManager.StartStage2Dialog();
         }
 
-        if (_deathTime == 12 && !stage3happend)
+        if (_deathTime >= 24 && !stage3happend)
         {
             stage3happend = true;
             _dialogManager.StartStage3Dialog();
         }
 
-        if (_deathTime == 13 && !stage4happend)
+        if (_deathTime >= 26 && !stage4happend)
         {
             stage4happend = true;
             _dialogManager.StartStage4Dialog();
         }
 
-        if (_deathTime == 16 && !stage5happend)
+        if (_deathTime >= 32 && !stage5happend)
         {
+            _deathTime = 32;
             stage5happend = true;
             StartFinale();
             
@@ -62,7 +63,7 @@ public class DeathTimeManager : MonoBehaviour
 
     public void RolledTwo()
     {
-        if (_deathTime < 6)
+        if (_deathTime < 24)
         {
             if (_initialDialogOver && !stage1happend)
             {
@@ -104,7 +105,7 @@ public class DeathTimeManager : MonoBehaviour
 
     public void IncreaseDeathTime()
     {
-        _deathTime += 1;
+        _deathTime += 2;
     }
 
     public void DecreaseDeathTime()

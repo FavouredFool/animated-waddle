@@ -18,7 +18,7 @@ public class ClockScript : MonoBehaviour
     float _activeArmAngle;
     float _desiredArmAngle;
     
-    float _maxDeathStage = 16f;
+    float _maxDeathStage = 32f;
 
 
     private void Start()
