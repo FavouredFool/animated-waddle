@@ -21,10 +21,20 @@ public class RKeyCanvasScript : MonoBehaviour
 
     void LateUpdate()
     {
+
         transform.LookAt(transform.position + _cameraTransform.forward);
 
-        _RKeyImage.gameObject.SetActive(_rollManager.GetCanThrowFlag());
+        bool show;
+        if (_rollManager.GetCanNeverThrowAgainFlag())
+        {
+            show = false;
+        }
+        else
+        {
+            show = _rollManager.GetCanThrowFlag();
+        }
 
+        _RKeyImage.gameObject.SetActive(show);
     }
 
 

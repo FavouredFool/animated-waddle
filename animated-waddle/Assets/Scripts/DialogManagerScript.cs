@@ -218,7 +218,7 @@ public class DialogManagerScript : MonoBehaviour
         _dialogCanvas.SetGMText("");
         yield return new WaitForSeconds(1);
 
-        _rollManager.SetCanThrowFlag(false);
+        _rollManager.SetCanNeverThrowAgainFlag(true);
 
         _manager.Play("talksound5s");
         _dialogCanvas.SetGMText("Do not bother rolling. We are beyond the veil.");
@@ -282,7 +282,7 @@ public class DialogManagerScript : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         _manager.Play("talksound5s");
-        _dialogCanvas.SetGMText("It made me feel seen. Even through you did not know of me.");
+        _dialogCanvas.SetGMText("It made me feel seen. Even though you did not know of me.");
         yield return new WaitForSeconds(5);
 
         _dialogCanvas.SetGMText("");

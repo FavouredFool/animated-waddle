@@ -26,6 +26,7 @@ public class RollManager : MonoBehaviour
 
     // flag
     bool _canThrowFlag;
+    bool _canNeverThrowAgainFlag;
 
     int _latestResult = -1;
 
@@ -37,6 +38,7 @@ public class RollManager : MonoBehaviour
     private void Awake()
     {
         _canThrowFlag = false;
+        _canNeverThrowAgainFlag = false;
     }
 
     private void Start()
@@ -48,18 +50,19 @@ public class RollManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (_canThrowFlag)
+            if (!_canNeverThrowAgainFlag)
             {
-                gameState = GameState.ROLLING;
-                _diceStack.RemoveDice();
+                if (_canThrowFlag)
+                {
+                    gameState = GameState.ROLLING;
+                    _diceStack.RemoveDice();
 
-                float strength = Random.Range(35f, 50f);
-                float height = Random.Range(0.1f, 0.35f);
-                float randomOffset = Random.Range(-1f, 1f);
+                    float strength = Random.Range(35f, 50f);
+                    float height = Random.Range(0.1f, 0.35f);
+                    float randomOffset = Random.Range(-1f, 1f);
 
-                Debug.Log("strength: " + strength + " height: " + height + " randomOffset: " + randomOffset);
-
-                RollPlayerDice(strength, height, randomOffset);
+                    RollPlayerDice(strength, height, randomOffset);
+                }
             }
             
         }
@@ -110,6 +113,16 @@ public class RollManager : MonoBehaviour
     public void SetCanThrowFlag(bool canThrow)
     {
         _canThrowFlag = canThrow;
+    }
+
+    public bool GetCanNeverThrowAgainFlag()
+    {
+        return _canNeverThrowAgainFlag;
+    }
+
+    public void SetCanNeverThrowAgainFlag(bool canNeverThrow)
+    {
+        _canNeverThrowAgainFlag = canNeverThrow;
     }
 
     public int GetLatestResult()
